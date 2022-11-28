@@ -1,6 +1,7 @@
 const express = require(`express`);
 const path = require(`path`);
 const { readFromFile, readAndAppend } = require(`./helpers/fsUtils`);
+const fs = require(`fs`);
 const uuid = require(`./helpers/uuid`);
 
 const PORT = 5500;
@@ -54,7 +55,17 @@ app.post(`/api/notes`, (req, res) => {
   }
 });
 
-app.delete(`/api/notes/:id`, (req, res) => {});
+app.delete("/api/notes/:id", (req, res) => {
+  let noteList = JSON.parse(fs.readFileSync("./db/db.json", "utf8"));
+  let noteId = req.params.id.toString();
+
+  noteList = noteList.filter((selected) => {
+    return selected.id != noteId;
+  });
+
+  fs.writeFileSync("./db/db.json", JSON.stringify(noteList));
+  res.json(noteList);
+});
 
 app.get(`/*`, (req, res) => {
   console.log(`Home page requested`);
