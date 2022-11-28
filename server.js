@@ -17,7 +17,7 @@ app.get(`/notes`, (req, res) => {
   res.sendFile(path.join(__dirname, `/public/notes.html`));
 });
 
-app.get(`/*`, (req, res) => {
+app.get(`/`, (req, res) => {
   console.log(`Home page requested`);
   res.sendFile(path.join(__dirname, `/public/index.html`));
 });
@@ -52,6 +52,13 @@ app.post(`/api/notes`, (req, res) => {
   } else {
     res.json(`Error in saving new note`);
   }
+});
+
+app.delete(`/api/notes/:id`, (req, res) => {});
+
+app.get(`/*`, (req, res) => {
+  console.log(`Home page requested`);
+  res.sendFile(path.join(__dirname, `/public/index.html`));
 });
 
 app.listen(PORT, () =>
