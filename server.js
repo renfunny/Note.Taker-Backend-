@@ -7,6 +7,7 @@ const uuid = require(`./helpers/uuid`);
 const PORT = 5500;
 const app = express();
 
+//Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -56,17 +57,18 @@ app.post(`/api/notes`, (req, res) => {
 });
 
 app.delete("/api/notes/:id", (req, res) => {
-  let noteList = JSON.parse(fs.readFileSync("./db/db.json", "utf8"));
+  let notes = JSON.parse(fs.readFileSync("./db/db.json", "utf8"));
   let noteId = req.params.id.toString();
 
-  noteList = noteList.filter((selected) => {
-    return selected.id != noteId;
+  notes = notes.filter((dltNote) => {
+    return dltNote.id != noteId;
   });
 
-  fs.writeFileSync("./db/db.json", JSON.stringify(noteList));
-  res.json(noteList);
+  fs.writeFileSync("./db/db.json", JSON.stringify(notes));
+  res.json(notes);
 });
 
+//Fallback route
 app.get(`/*`, (req, res) => {
   console.log(`Home page requested`);
   res.sendFile(path.join(__dirname, `/public/index.html`));
