@@ -4,7 +4,7 @@ const { readFromFile, readAndAppend } = require(`./helpers/fsUtils`);
 const fs = require(`fs`);
 const uuid = require(`./helpers/uuid`);
 
-const PORT = 5500;
+const PORT = process.env.PORT || 3001;
 const app = express();
 
 //Middleware
