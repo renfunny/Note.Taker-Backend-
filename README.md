@@ -38,7 +38,7 @@ and follow the link that pops up in the terminal
 ## Usage
 
 This project can be used to store information such as notes, reminders, passwords, etc. The information will be stored when the save button on the top right is clicked, once done the note will appear on the left side where it can be viewed or deleted.
-The deployed version of this project can be found in the following link:
+The deployed version of this project can be found in the following link: [https://glacial-savannah-44307.herokuapp.com/](https://glacial-savannah-44307.herokuapp.com/)
 
 ## License
 
